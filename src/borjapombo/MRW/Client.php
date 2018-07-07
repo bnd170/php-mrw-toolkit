@@ -4,6 +4,7 @@ namespace borjapombo\MRW;
 
 use borjapombo\MRW\Entity\AuthHeader;
 use borjapombo\MRW\Entity\Delivery;
+use borjapombo\MRW\Entity\PickupAddress;
 use borjapombo\MRW\Entity\ServiceData;
 use borjapombo\MRW\Entity\ShippingAddress;
 use borjapombo\MRW\Entity\ShippingUser;
@@ -26,10 +27,10 @@ class Client
         $this->authHeader = $authHeader;
     }
 
-    public function createTransaction(ServiceData $data, ShippingAddress $address, ShippingUser $user): Delivery
+    public function createTransaction(ServiceData $data, ShippingAddress $shippingAddress, PickupAddress $pickupAddress = null, ShippingUser $user): Delivery
     {
         $this->client->__setSoapHeaders([SoapHeaderFactory::create($this->authHeader)]);
-        $request = SoapRequestFactory::create($data, $address, $user);
+        $request = SoapRequestFactory::create($data, $shippingAddress, $pickupAddress, $user);
         $response = $this->client->__soapCall(self::TRANSACTION_METHOD, $request);
 
         return SoapResponseFactory::create($response);
