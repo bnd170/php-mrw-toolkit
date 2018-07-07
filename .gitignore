@@ -1,0 +1,13 @@
+
+### System files
+.DS_Store
+.idea
+dump.rdb
+nbproject
+.credentials
+
+### Managed by Composer or NPM
+/vendor
+
+### Other
+coverage
