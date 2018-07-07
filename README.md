@@ -8,7 +8,7 @@ PHP Library to Wrap MRW API
 # Installation
 
 ```
-$ composer require bnd170/mrw-toolkit-php
+$ composer require bnd170/php-mrw-toolkit
 ```
 
 # Testing And Coverage
