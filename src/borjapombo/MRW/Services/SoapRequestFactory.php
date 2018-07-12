@@ -3,6 +3,7 @@
 namespace borjapombo\MRW\Services;
 
 use borjapombo\MRW\Entity\PickupAddress;
+use borjapombo\MRW\Entity\PickupUser;
 use borjapombo\MRW\Entity\ServiceData;
 use borjapombo\MRW\Entity\ShippingAddress;
 use borjapombo\MRW\Entity\ShippingUser;
@@ -13,10 +14,11 @@ class SoapRequestFactory
      * @param ServiceData $data
      * @param ShippingAddress $shippingAddress
      * @param PickupAddress|null $pickupAddress
-     * @param ShippingUser $user
+     * @param ShippingUser $shippingUser
+     * @param PickupUser $pickupUser
      * @return array
      */
-    public static function create(ServiceData $data, ShippingAddress $shippingAddress, PickupAddress $pickupAddress = null, ShippingUser $user): array
+    public static function create(ServiceData $data, ShippingAddress $shippingAddress, PickupAddress $pickupAddress = null, ShippingUser $shippingUser, PickupUser $pickupUser): array
     {
         $requestXLM = [
             'TransmEnvio' => [
@@ -32,12 +34,12 @@ class SoapRequestFactory
                             'Poblacion' => $shippingAddress->getCity(),
                             'CodigoPais' => $shippingAddress->getCountryCode(),
                         ],
-                        'Nif' => $user->getNif(),
-                        'Nombre' => $user->getName(),
-                        'Telefono' => $user->getTelephone(),
-                        'Contacto' => $user->getContact(),
-                        'ALaAtencionDe' => $user->getAtentionTo(),
-                        'Observaciones' => $user->getObservations(),
+                        'Nif' => $pickupUser->getNif(),
+                        'Nombre' => $pickupUser->getName(),
+                        'Telefono' => $pickupUser->getTelephone(),
+                        'Contacto' => $pickupUser->getContact(),
+                        'ALaAtencionDe' => $pickupUser->getAtentionTo(),
+                        'Observaciones' => $pickupUser->getObservations(),
                     ],
                     'DatosServicio' => [
                         'Fecha' => $data->getDate(),
@@ -95,12 +97,12 @@ class SoapRequestFactory
                         'Poblacion' => $pickupAddress->getCity(),
                         'CodigoPais' => $pickupAddress->getCountryCode(),
                     ],
-                    'Nif' => $user->getNif(),
-                    'Nombre' => $user->getName(),
-                    'Telefono' => $user->getTelephone(),
-                    'Contacto' => $user->getContact(),
-                    'ALaAtencionDe' => $user->getAtentionTo(),
-                    'Observaciones' => $user->getObservations(),
+                    'Nif' => $shippingUser->getNif(),
+                    'Nombre' => $shippingUser->getName(),
+                    'Telefono' => $shippingUser->getTelephone(),
+                    'Contacto' => $shippingUser->getContact(),
+                    'ALaAtencionDe' => $shippingUser->getAtentionTo(),
+                    'Observaciones' => $shippingUser->getObservations(),
                 ]
             ];
         }
