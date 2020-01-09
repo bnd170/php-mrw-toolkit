@@ -1,6 +1,6 @@
 <?php
 
-namespace borjapombo\MRW\Address;
+namespace borjapombo\MRW\Model;
 
 class Address
 {

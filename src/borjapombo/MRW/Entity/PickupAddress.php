@@ -2,7 +2,7 @@
 
 namespace borjapombo\MRW\Entity;
 
-use borjapombo\MRW\Address\Address;
+use borjapombo\MRW\Model\Address;
 
 class PickupAddress extends Address
 {
